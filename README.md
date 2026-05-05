@@ -1,6 +1,6 @@
 # auto-memory
 
-`auto-memory` is a Codex skill for keeping durable, project-local context across chat switches, reopened agents, and context compaction.
+`auto-memory` is an agent skill for keeping durable, project-local context across chat switches, reopened agents, and context compaction.
 
 The skill tells an agent to maintain a `.agent/memory.md` file in the current project root:
 
@@ -8,6 +8,8 @@ The skill tells an agent to maintain a `.agent/memory.md` file in the current pr
 - If `.agent/memory.md` exists, read it first, then compress and update it with the current session context.
 - Preserve task goals, project state, decisions, commands, verification status, blockers, and next steps.
 - Avoid writing secrets, credentials, private keys, or long raw logs.
+- **Strict Size Limit**: The `.agent/memory.md` file MUST NEVER exceed 12,000 characters.
+- **Current State Only**: Do NOT keep a chronological log or history of modifications. The memory must reflect only the current state of the project.
 
 ## Files
 
@@ -33,5 +35,5 @@ The project memory should always live at:
 <project-root>/.agent/memory.md
 ```
 
-The memory should be compact enough to read quickly, but complete enough for a future agent to resume work without the original chat.
+The memory should be compact enough to read quickly (strictly under 12,000 characters), replacing outdated context rather than appending to a history log, but complete enough for a future agent to resume work without the original chat.
 
