@@ -18,7 +18,7 @@ The skill tells an agent to maintain a `.agent/memory.md` file in the current pr
 
 ## Installation
 
-Copy the skill into your Codex skills directory:
+Copy the skill into your AI agent's skills directory:
 
 ```bash
 mkdir -p ~/.agents/skills/auto-memory
