@@ -29,13 +29,15 @@ If `.agent/memory.md` is missing, inspect the project folder and create a curren
 
 If `.agent/memory.md` exists, read it first, then compress and update it with the current session context. Preserve durable facts, remove stale detail, and keep the file useful for reopening the project later.
 
+**Crucial Constraint**: The total character count of `.agent/memory.md` MUST NEVER exceed 12,000 characters. When updating, actively summarize and prune older information to ensure the file remains strictly under this limit. **Do NOT keep a chronological log or history of modifications. The memory must reflect only the current state of the project.**
+
 ## Workflow
 
 1. Confirm the project root with `pwd`.
 2. Check whether `.agent/memory.md` exists.
 3. If missing, inspect the folder with fast read-only commands such as `find`, `rg --files`, `ls`, and selected file reads.
 4. If present, read `.agent/memory.md` before editing.
-5. Write a compact memory that includes the current project state and session context.
+5. Write a compact memory that includes the current project state and session context. Replace outdated context rather than appending to a history log.
 6. Keep the memory comprehensive enough to resume work, but avoid dumping raw command output.
 
 ## Memory Format
@@ -75,7 +77,8 @@ If `.agent/memory.md` exists, read it first, then compress and update it with th
 | Situation | Action |
 | --- | --- |
 | No `.agent/memory.md` | Inspect project, create current-state memory |
-| Existing `.agent/memory.md` | Read, compress, update, preserve durable facts |
+| Existing `.agent/memory.md` | Read, compress, update, preserve durable facts. **Only maintain current state, no history logs.** |
+| Exceeding size limit | Prune and summarize to keep strictly under 12,000 characters |
 | Long terminal output | Summarize the result and keep key commands |
 | Sensitive data appears | Do not write it to memory |
 | Unsure where to write | Use the current project root, not the home directory |
@@ -85,6 +88,8 @@ If `.agent/memory.md` exists, read it first, then compress and update it with th
 - Writing to `~/.agent/memory.md` instead of project-local `.agent/memory.md`.
 - Creating memory from chat alone without inspecting project files.
 - Appending endlessly instead of compressing stale context.
+- Keeping a chronological log of modifications instead of focusing on the current project state.
+- Exceeding the 12,000 character limit by failing to prune old information.
 - Omitting task goals, key tools, verification status, or blockers.
 - Saving secrets or raw logs that future agents do not need.
 
